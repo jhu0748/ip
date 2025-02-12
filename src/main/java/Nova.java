@@ -6,10 +6,9 @@ public class Nova {
         System.out.println("\t Hello! I'm Nova.\n\t What can I do for you?");
         
         Scanner scanner = new Scanner(System.in);
-        String input;
 
         while(true) {
-            input = scanner.nextLine();
+            String input = scanner.nextLine();
             if (input.equals("bye")) {
                 Ui.printSeparatorLine();
                 System.out.println("\t Bye. Hope to see you again soon!");

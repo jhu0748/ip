@@ -2,6 +2,7 @@ public class TaskList {
     private final Task[] taskList = new Task[100];
     private int numTasks = 0;
 
+    // add task to tasklist
     public void addTask(Task task) {
         taskList[numTasks] = task;
         numTasks++;
@@ -11,7 +12,7 @@ public class TaskList {
         System.out.println("\t Now you have " + numTasks + " tasks in the list.");
         Ui.printSeparatorLine();
     }
-
+    // mark task as done [X]
     public void markTaskDone(int taskNum) {
         taskList[taskNum].markAsDone();
         Ui.printSeparatorLine();
@@ -19,7 +20,7 @@ public class TaskList {
         System.out.println(("\t   " + taskList[taskNum]));
         Ui.printSeparatorLine();
     }
-
+    // mark as not done [ ]
     public void unmarkTaskDone(int taskNum) {
         taskList[taskNum].unmarkAsDone();
         Ui.printSeparatorLine();
@@ -27,7 +28,7 @@ public class TaskList {
         System.out.println(("\t   " + taskList[taskNum]));
         Ui.printSeparatorLine();
     }
-
+    // print out tasklist if there is at least 1 task in the list
     public void listTasks() {
         Ui.printSeparatorLine();
 
