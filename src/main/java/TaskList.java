@@ -40,7 +40,6 @@ public class TaskList {
                 System.out.println("\t " + (i + 1) + "." + taskList[i]);
             }
         }
-
         Ui.printSeparatorLine();
     }
 }
