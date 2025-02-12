@@ -21,11 +21,29 @@ public class Nova {
                     String description = input.substring(4);
                     taskList.addTask(new Todo(description));
                 } else if (input.startsWith("deadline")) {
-                    String[] parts = input.substring(8).split(" /by ");
-                    taskList.addTask(new Deadline(parts[0], parts[1]));
+                    try {
+                        String[] parts = input.substring(8).split(" /by ");
+                        if (parts.length < 2) {
+                            throw new NovaException("OOPS!!! A deadline must have a description and a /by time.");
+                        }
+                        taskList.addTask(new Deadline(parts[0], parts[1]));
+                    } catch (NovaException e) {
+                        Ui.printSeparatorLine();
+                        System.out.println("\t " + e.getMessage());
+                        Ui.printSeparatorLine();
+                    }
                 } else if (input.startsWith("event")) {
-                    String[] parts = input.substring(5).split(" /from | /to ");
-                    taskList.addTask(new Event(parts[0], parts[1], parts[2]));
+                    try {
+                        String[] parts = input.substring(5).split(" /from | /to ");
+                        if (parts.length < 3) {
+                            throw new NovaException("OOPS!! An event must have a description, /from, and /to times.");
+                        }
+                        taskList.addTask(new Event(parts[0], parts[1], parts[2]));
+                    } catch (NovaException e) {
+                        Ui.printSeparatorLine();
+                        System.out.println("\t " + e.getMessage());
+                        Ui.printSeparatorLine();
+                    }
                 } else if (input.startsWith("mark")) {
                     int taskIndexMark = Integer.parseInt(input.substring(5)) - 1;
                     taskList.markTaskDone(taskIndexMark);
@@ -37,9 +55,13 @@ public class Nova {
                     System.out.println("\t OOPS!! I apologize but that is an unrecognized command, please try again.");
                     Ui.printSeparatorLine();
                 }
-            } catch(IllegalArgumentException e) {
+            } catch(NovaException e) {
                 Ui.printSeparatorLine();
                 System.out.println("\t " + e.getMessage());
+                Ui.printSeparatorLine();
+            } catch (NumberFormatException e) {
+                Ui.printSeparatorLine();
+                System.out.println("\t OOPS!!! Please provide a valid number for mark or unmark commands.");
                 Ui.printSeparatorLine();
             }
         }
