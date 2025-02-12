@@ -3,11 +3,11 @@ public class TaskList {
     private int numTasks = 0;
 
     // add task to tasklist
-    public void addTask(Task task) {
+    public void addTask(Task task) throws NovaException {
         taskList[numTasks] = task;
         numTasks++;
         Ui.printSeparatorLine();
-        System.out.println("Got it. I've added this task:");
+        System.out.println("\t Got it. I've added this task:");
         System.out.println("\t  " + task);
         System.out.println("\t Now you have " + numTasks + " tasks in the list.");
         Ui.printSeparatorLine();
