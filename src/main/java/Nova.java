@@ -48,8 +48,11 @@ public class Nova {
                     int taskIndexMark = Integer.parseInt(input.substring(5)) - 1;
                     taskList.markTaskDone(taskIndexMark);
                 } else if (input.startsWith("unmark")) {
-                    int taskIndexUnmark = Integer.parseInt((input.substring(7))) - 1;
+                    int taskIndexUnmark = Integer.parseInt(input.substring(7)) - 1;
                     taskList.unmarkTaskDone(taskIndexUnmark);
+                } else if (input.startsWith("delete")) {
+                    int taskIndexDelete = Integer.parseInt(input.substring(7)) - 1;
+                    taskList.deleteTask(taskIndexDelete);
                 } else {
                     Ui.printSeparatorLine();
                     System.out.println("\t OOPS!! I apologize but that is an unrecognized command, please try again.");
@@ -61,7 +64,7 @@ public class Nova {
                 Ui.printSeparatorLine();
             } catch (NumberFormatException e) {
                 Ui.printSeparatorLine();
-                System.out.println("\t OOPS!!! Please provide a valid number for mark or unmark commands.");
+                System.out.println("\t OOPS!!! Please provide a valid number for mark, unmark, or delete commands.");
                 Ui.printSeparatorLine();
             }
         }

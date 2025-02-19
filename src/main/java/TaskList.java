@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class TaskList {
     private static final ArrayList<Task> taskArrayList = new ArrayList<>();
 
-    // add task to tasklist
+    // add task to arraylist
     public void addTask(Task task) throws NovaException {
         taskArrayList.add(task);
         Ui.printSeparatorLine();
@@ -27,6 +27,15 @@ public class TaskList {
         System.out.println("\t Ok! I've marked this task as not done yet:");
         System.out.println("\t   " + taskArrayList.get(taskNum));
         Ui.printSeparatorLine();
+    }
+    // delete task from arraylist
+    public void deleteTask(int taskNum) {
+        Ui.printSeparatorLine();
+        System.out.println("\t Noted I've removed this task:");
+        System.out.println("\t   " + taskArrayList.get(taskNum));
+        System.out.println("\t Now you have " + taskArrayList.size() + " tasks in the list.");
+        Ui.printSeparatorLine();
+        taskArrayList.remove(taskNum);
     }
     // print out tasklist if there is at least 1 task in the list
     public void listTasks() {
