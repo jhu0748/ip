@@ -84,10 +84,10 @@ public class TaskList {
     private void loadTasks() {
         File file = new File(FILE_PATH);
         if (!file.exists()) {
-            System.out.println("No saved tasks found. Starting fresh...");
+            System.out.println("\t No saved tasks found. Starting fresh...");
             return;
         }
-
+        System.out.println("\t Loading in saved tasks...");
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             String line;
             while ((line = reader.readLine()) != null) {
