@@ -17,12 +17,12 @@ public class Nova {
                     break;
                 } else if (input.equals("list")) {
                     taskList.listTasks();
-                } else if (input.startsWith("todo")) {
-                    String description = input.substring(4);
+                } else if (input.startsWith("todo ")) {
+                    String description = input.substring(5);
                     taskList.addTask(new Todo(description));
-                } else if (input.startsWith("deadline")) {
+                } else if (input.startsWith("deadline ")) {
                     try {
-                        String[] parts = input.substring(8).split(" /by ");
+                        String[] parts = input.substring(9).split(" /by ");
                         if (parts.length < 2) {
                             throw new NovaException("OOPS!!! A deadline must have a description and a /by time.");
                         }
@@ -34,7 +34,7 @@ public class Nova {
                     }
                 } else if (input.startsWith("event")) {
                     try {
-                        String[] parts = input.substring(5).split(" /from | /to ");
+                        String[] parts = input.substring(6).split(" /from | /to ");
                         if (parts.length < 3) {
                             throw new NovaException("OOPS!! An event must have a description, /from, and /to times.");
                         }
