@@ -1,3 +1,0 @@
-T | 0 | run
-D | 0 | hi | tomorrow
-E | 1 | project meeting | Mon 2pm-4pm
