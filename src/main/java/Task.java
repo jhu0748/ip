@@ -18,6 +18,9 @@ public class Task {
         return (isDone ? "X" : " ");
     }
 
+    public String getSaveData() {
+        return "";
+    }
     @Override
     public String toString() {
         return "[" + getStatus() + "] " + description;
