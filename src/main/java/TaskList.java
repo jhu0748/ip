@@ -28,7 +28,6 @@ public class TaskList {
         System.out.println("\t Nice! I've marked this task as done:");
         System.out.println("\t   " + taskArrayList.get(taskNum));
         Ui.printSeparatorLine();
-        saveTasks();
     }
     // mark as not done [ ]
     public void unmarkTaskDone(int taskNum) {
@@ -43,9 +42,10 @@ public class TaskList {
         Ui.printSeparatorLine();
         System.out.println("\t Noted I've removed this task:");
         System.out.println("\t   " + taskArrayList.get(taskNum));
-        System.out.println("\t Now you have " + taskArrayList.size() + " tasks in the list.");
+        System.out.println("\t Now you have " + (taskArrayList.size() - 1) + " tasks in the list.");
         Ui.printSeparatorLine();
         taskArrayList.remove(taskNum);
+        saveTasks();
     }
     // print out tasklist if there is at least 1 task in the list
     public void listTasks() {
