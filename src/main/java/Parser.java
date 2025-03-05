@@ -27,7 +27,7 @@ public class Parser {
 
     /**
      * Continuously processes user commands until user exits by inputting "bye".
-     * Handles several commands like "list", "todo", "deadline", "event", "mark", "unmark", etc.
+     * Handles several commands like "find", "list", "todo", "deadline", "event", "mark", "unmark", etc.
      * Commands can modify the task list and it will save the updates to the file where it is being stored.
      */
     public void processCommands() {
@@ -35,7 +35,14 @@ public class Parser {
         while(true) {
             try {
                 String input = scanner.nextLine();
-                if (input.equals("bye")) {
+                if(input.startsWith("find ")) {
+                    try {
+                        String keyword = input.substring(5).trim();
+                        tasks.findTasks(keyword);
+                    } catch (NovaException e) {
+                        ui.showError(e.getMessage());
+                    }
+                } else if (input.equals("bye")) {
                     ui.showGoodbye();
                     break;
                 } else if (input.equals("list")) {
