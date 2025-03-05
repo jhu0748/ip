@@ -1,30 +1,48 @@
-# Duke User Guide
+# Nova Chatbot User Guide
 
-// Update the title above to match the actual product name
+Welcome to **Nova** - your new personal task manager chatbot!
 
-// Product screenshot goes here
+## What is Nova?
+Nova is a simple chatbot that helps you manage tasks like to-dos, deadlines, and events.
 
-// Product intro goes here
+---
 
-## Adding deadlines
+## How to Use Nova
+### 1. Adding Tasks
+- **Todo:**  
+  `todo <description>`  
+  Example: `todo go on a run`
 
-// Describe the action and its outcome.
+- **Deadline:**  
+  `deadline <description> /by <date>`  
+  Example: `deadline Submit homework /by Next Friday`
 
-// Give examples of usage
+- **Event:**  
+  `event <description> /from <start> /to <end>`  
+  Example: `event CS2113 Meeting /from 2pm /to 4pm`
 
-Example: `keyword (optional arguments)`
+### 2. Listing Tasks
+Show all tasks:  
+`list`
 
-// A description of the expected outcome goes here
+### 3. Marking and Unmarking Tasks as Done
+`mark <task number>`  
+`unmark <task number>`
 
-```
-expected output
-```
+### 4. Deleting Tasks
+`delete <task number>`
 
-## Feature ABC
+### 5. Exiting Nova
+`bye`
 
-// Feature details
+---
 
+## Saving
+Your tasks are saved automatically, so when you reopen Nova, they’ll still be there!
 
-## Feature XYZ
+---
 
-// Feature details
+## Notes
+- Dates and times are free text, so you may use whichever format you like.
+- Make sure to enter commands exactly as shown.
+---
