@@ -1,11 +1,23 @@
 import java.util.Scanner;
 
+/**
+ * The Parser class processes user inputs/commands and updates the task list and storage file accordingly.
+ * It handles commands like "list", "todo", "deadline", "mark", etc.
+ * It allows users to manipulate and track their tasks.
+ */
 public class Parser {
     private final TaskList tasks;
     private final Ui ui;
     private final Scanner scanner;
     private final Storage storage;
 
+    /**
+     * Constructs a Parser object given specified TaskList, Ui, and Storage objects.
+     *
+     * @param tasks TaskList object holding all tasks
+     * @param ui Ui object for displaying messages to the user
+     * @param storage Storage object for saving and loading tasks
+     */
     public Parser(TaskList tasks, Ui ui, Storage storage) {
         this.tasks = tasks;
         this.ui = ui;
@@ -13,6 +25,11 @@ public class Parser {
         this.storage = storage;
     }
 
+    /**
+     * Continuously processes user commands until user exits by inputting "bye".
+     * Handles several commands like "list", "todo", "deadline", "event", "mark", "unmark", etc.
+     * Commands can modify the task list and it will save the updates to the file where it is being stored.
+     */
     public void processCommands() {
         ui.showWelcome();
         while(true) {
