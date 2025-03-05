@@ -1,4 +1,3 @@
 T | 0 | h
 T | 0 | hihihihi
 T | 0 | hihihi
-T | 0 | hi
