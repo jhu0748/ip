@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 /**
  * Ui class is responsible for displaying messages to the user and guides the interaction.
  * It handles showing welcome messages, errors, and a goodbye message.
@@ -9,6 +10,25 @@ public class Ui {
      */
     public static void printSeparatorLine() {
         System.out.println("\t____________________________________________________________");
+    }
+
+    /**
+     * Displays the tasks whose descriptions contained the keyword given by the user.
+     *
+     * @param matchingTasks ArrayList containing tasks whose descriptions matched keyword
+     * @param keyword String keyword input by user
+     */
+    public static void showFindResults(ArrayList<Task> matchingTasks, String keyword) {
+        printSeparatorLine();
+        if(matchingTasks.isEmpty()) {
+            System.out.println("\t Sorry. No task descriptions matched the keyword given.");
+        } else {
+            System.out.println("\t Here are the matching tasks based on the keyword \"" + keyword + "\" you gave:");
+            for(int i = 0; i < matchingTasks.size(); i++) {
+                System.out.println("\t " + (i + 1) + "." + matchingTasks.get(i));
+            }
+        }
+        printSeparatorLine();
     }
 
     /**
