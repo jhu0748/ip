@@ -1,15 +1,32 @@
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Handles loading and saving of tasks to and from a file.
+ * Tasks are stored in a file specified by provided file path.
+ * Class provides functionality to load tasks from a file on startup and save current task list to the file
+ */
 public class Storage {
     private final String FILE_PATH;
     private final ArrayList<Task> tasks;
 
+    /**
+     * Initializes new Storage object with specified file path.
+     *
+     * @param filePath Path to file where list of tasks will be stored.
+     */
     public Storage(String filePath) {
         this.FILE_PATH = filePath;
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Loads tasks from file specified by FILE_PATH.
+     * If file does not exist, new task list is returned.
+     *
+     * @return an ArrayList of tasks loaded from the file.
+     * @throws NovaException if there is an error during task parsing.
+     */
     public ArrayList<Task> loadTasks() throws NovaException{
         File file = new File(FILE_PATH);
 
@@ -38,6 +55,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves provided list of tasks to file specified by FILE_PATH.
+     * Creates directory if it does not exist.
+     *
+     * @param tasks List of tasks to save to file.
+     */
     public void saveTasks(ArrayList<Task> tasks) {
         File dir = new File("./data");
         if (!dir.exists()) {
@@ -55,6 +78,14 @@ public class Storage {
         }
     }
 
+    /**
+     * Parses line of text from saved file into a Task object.
+     * Line must be formatted correctly for type of task it represents.
+     *
+     * @param line The line of text representing a task.
+     * @return Task object corresponding to parsed data.
+     * @throws NovaException If line format is invalid or an unknown task type is encountered.
+     */
     private Task parseTask(String line) throws NovaException {
         String[] parts = line.split(" \\| ");
         if (parts.length < 3) {
