@@ -14,7 +14,7 @@ public class Nova {
         storage = new Storage(filePath);
 
         try {
-            tasks = new TaskList(storage.loadTasks());
+            tasks = new TaskList(storage.loadTasks(), ui);
         } catch (NovaException e) {
             ui.showLoadingError();
             tasks = new TaskList();

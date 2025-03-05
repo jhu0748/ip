@@ -7,13 +7,14 @@ import java.util.ArrayList;
  */
 public class TaskList {
     private final ArrayList<Task> tasks;
-    //private static final String FILE_PATH = "./data/nova.txt";
+    private final Ui ui;
 
     /**
      * Creates an empty TaskList.
      */
     public TaskList() {
         this.tasks = new ArrayList<>();
+        this.ui = new Ui();
     }
 
     /**
@@ -22,8 +23,9 @@ public class TaskList {
      *
      * @param tasks list of tasks to initialize the TaskList, from saved file
      */
-    public TaskList(ArrayList<Task> tasks) {
+    public TaskList(ArrayList<Task> tasks, Ui ui) {
         this.tasks = tasks != null ? tasks : new ArrayList<>();
+        this.ui = ui;
     }
 
     /**
@@ -36,73 +38,70 @@ public class TaskList {
     }
 
     /**
-     * Adds a task to the task list.
+     * Adds a task to the task list and prints task details as well as how many tasks now in the list.
      *
      * @param task task to add
      * @throws NovaException if there is an error adding the task
      */
     public void addTask(Task task) throws NovaException {
+        int numTasks = tasks.size();
+
         tasks.add(task);
-        Ui.printSeparatorLine();
-        System.out.println("\t Got it. I've added this task:");
-        System.out.println("\t  " + task);
-        System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
-        Ui.printSeparatorLine();
+        numTasks++;
+        ui.printAddTaskOutput(task, numTasks);
     }
 
     /**
-     * Marks a task as done (with an [X]
+     * Marks a task as done (with an [X])
+     * isDone = true indicates to command prompt print function that user was marking a task as done.
      *
      * @param taskNum index of task to mark as done where 0 is first task
      * @throws NovaException if index of taskNum is out of bounds (negative or more than number of tasks in list - 1)
      */
     public void markTaskDone(int taskNum) throws NovaException{
-        if(taskNum <= 0 || taskNum > (tasks.size() - 1)) {
+        boolean isDone = true; // indicates to print function that we marked a task as done
+        if(taskNum < 0 || taskNum > (tasks.size() - 1)) {
             throw new NovaException("Please provide a valid task number to mark as done. Try again!");
         }
 
         tasks.get(taskNum).markAsDone();
-        Ui.printSeparatorLine();
-        System.out.println("\t Nice! I've marked this task as done:");
-        System.out.println("\t   " + tasks.get(taskNum));
-        Ui.printSeparatorLine();
+        ui.printMarkingOutput(tasks, taskNum, isDone);
     }
 
     /**
      * Mark task as not done (becomes [ ])
+     * isDone = false indicates to command prompt print function that user was unmarking a task as done.
      *
      * @param taskNum index of task to mark as not done (zero-based)
      * @throws NovaException if index is out of bounds (negative or more than number of tasks in list - 1)
      */
     public void unmarkTaskDone(int taskNum) throws NovaException{
-        if(taskNum <= 0 || taskNum > (tasks.size() - 1)) {
+        boolean isDone = false;
+        if(taskNum < 0 || taskNum > (tasks.size() - 1)) {
             throw new NovaException("Please provide a valid task number to unmark as done. Try again!");
         }
 
         tasks.get(taskNum).unmarkAsDone();
-        Ui.printSeparatorLine();
-        System.out.println("\t Ok! I've marked this task as not done yet:");
-        System.out.println("\t   " + tasks.get(taskNum));
-        Ui.printSeparatorLine();
+        ui.printMarkingOutput(tasks, taskNum, isDone);
     }
 
     /**
-     * Deletes a task from task list.
+     * Deletes a task from task list. First saves task to be deleted so its details can be printed after deleting.
      *
      * @param taskNum index of task to delete (zero-based)
      * @throws NovaException if index is out of bounds (negative or more than number of tasks in list - 1)
      */
     public void deleteTask(int taskNum) throws NovaException{
-        if(taskNum <= 0 || taskNum > (tasks.size() - 1)) {
+        Task task = tasks.get(taskNum);
+        int numTasks = tasks.size();
+
+        if(taskNum < 0 || taskNum > (tasks.size() - 1)) {
             throw new NovaException("Please provide a valid task number to delete. Try again!");
         }
 
-        Ui.printSeparatorLine();
-        System.out.println("\t Noted. I've removed this task:");
-        System.out.println("\t   " + tasks.get(taskNum));
-        System.out.println("\t Now you have " + (tasks.size() - 1) + " tasks in the list.");
-        Ui.printSeparatorLine();
         tasks.remove(taskNum);
+        numTasks--;
+        ui.printDeleteTaskOutput(task, numTasks);
     }
 
     /**
@@ -111,7 +110,7 @@ public class TaskList {
      */
     // print out tasklist if there is at least 1 task in the list
     public void listTasks() {
-        Ui.printSeparatorLine();
+        ui.printSeparatorLine();
 
         if (tasks.isEmpty()) {
             System.out.println("\t Sorry! No tasks were recorded. Try adding to the task list.");
@@ -121,7 +120,7 @@ public class TaskList {
                 System.out.println("\t " + (i + 1) + "." + tasks.get(i));
             }
         }
-        Ui.printSeparatorLine();
+        ui.printSeparatorLine();
     }
 
     /**
@@ -143,6 +142,6 @@ public class TaskList {
             }
         }
 
-        Ui.showFindResults(matchingTasks, keyword);
+        ui.showFindResults(matchingTasks, keyword);
     }
 }
