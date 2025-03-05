@@ -18,14 +18,7 @@ public class Parser {
         while(true) {
             try {
                 String input = scanner.nextLine();
-                if(input.startsWith("find ")) {
-                    try {
-                        String keyword = input.substring(5).trim();
-                        tasks.findTasks(keyword);
-                    } catch (NovaException e) {
-                        ui.showError(e.getMessage());
-                    }
-                } else if (input.equals("bye")) {
+                if (input.equals("bye")) {
                     ui.showGoodbye();
                     break;
                 } else if (input.equals("list")) {

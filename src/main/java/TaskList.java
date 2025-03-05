@@ -67,19 +67,4 @@ public class TaskList {
         }
         Ui.printSeparatorLine();
     }
-
-    public void findTasks(String keyword) throws NovaException{
-        if(keyword.isEmpty()) {
-            throw new NovaException("Please provide a keyword and try again.");
-        }
-        ArrayList<Task> matchingTasks = new ArrayList<>();
-
-        for (Task task : tasks) {
-            if (task.description.toLowerCase().contains(keyword.toLowerCase())) {
-                matchingTasks.add(task);
-            }
-        }
-
-        Ui.showFindResults(matchingTasks, keyword);
-    }
 }

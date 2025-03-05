@@ -26,16 +26,4 @@ public class Ui {
         printSeparatorLine();
     }
 
-    public static void showFindResults(ArrayList<Task> matchingTasks, String keyword) {
-        printSeparatorLine();
-        if(matchingTasks.isEmpty()) {
-            System.out.println("\t Sorry. No task descriptions matched the keyword given.");
-        } else {
-            System.out.println("\t Here are the matching tasks based on the keyword \"" + keyword + "\" you gave:");
-            for(int i = 0; i < matchingTasks.size(); i++) {
-                System.out.println("\t " + (i + 1) + "." + matchingTasks.get(i));
-            }
-        }
-        printSeparatorLine();
-    }
 }
